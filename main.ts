@@ -47,12 +47,13 @@ controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
     Ghost.startEffect(effects.warmRadial, 200)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Hole, function (sprite, otherSprite) {
-    if (otherSprite.right - sprite.left < 2) {
+    if (otherSprite.right - sprite.left < 1) {
         info.changeScoreBy(1)
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
     game.over(false)
+    game.splash("")
 })
 let Hole_ghost: Sprite = null
 let Hole: Image = null
@@ -453,8 +454,8 @@ game.onUpdateInterval(2000, function () {
     Hole = image.create(2, scene.screenHeight())
     Hole.fill(5)
     Hole_ghost = sprites.create(Hole, SpriteKind.Hole)
-    Hole_ghost.setFlag(SpriteFlag.AutoDestroy, false)
-    Hole_ghost.setFlag(SpriteFlag.Invisible, false)
+    Hole_ghost.setFlag(SpriteFlag.AutoDestroy, true)
+    Hole_ghost.setFlag(SpriteFlag.Invisible, true)
     Hole_ghost.left = scene.screenWidth()
     Hole_ghost.vx = -45
 })
